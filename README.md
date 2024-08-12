@@ -31,7 +31,7 @@ DimCustomer - Use the SQL script here to create the DimCustomer table (https://d
 DimMonth - Use the SQL script here to create the DimMonth table (https://drive.google.com/file/d/1kgfe5Wq9UlQj6FzCdezMGut0Om3AHGYr/view?usp=sharing)
 FactBilling - Use the SQL script here to create the FactBilling table (https://drive.google.com/file/d/1lxCnZoFqL6J9HTBMRG3KTHIiCmD_ApR_/view?usp=sharing)
 
-# Task 1: Task A: Create a database
+# Task A: Create a database
 
 1. Open the pgAdmin Graphical User Interface
    
@@ -112,16 +112,61 @@ DimCustomer Table
 
 ![image](https://github.com/user-attachments/assets/86308067-7bbe-412b-9209-350f093df2f4)
 
-DimMonth table
+DimMonth Table
 
 ![image](https://github.com/user-attachments/assets/3d397bed-43df-440a-9bb3-7c4a463e0cc1)
 
-FactBilling table
+FactBilling Table
 
 ![image](https://github.com/user-attachments/assets/dbb4dfc2-596e-40fa-96fe-4d27a5ac0d6f)
 
+# Task E: Solve some SQL problems
 
+- Problem 1: Using the PostgreSQL tool, find the count of rows in the tables
 
+  To find the count of rows in the DimCustomer Table, I issued the following query:
+
+         select count(*) from public."DimCustomer";
+
+![image](https://github.com/user-attachments/assets/2c95b645-2a9c-430c-9d4b-7a99577c7e21)
+
+  To find the count of rows in the DimMonth Table, I issued the following query:
+
+         select count(*) from public."DimMonth";
+
+![image](https://github.com/user-attachments/assets/a2888aed-cb15-4cbf-81e3-c8ea2b1f3895)
+
+  To find the count of rows in the FactBilling Table, I issued the following query:
+
+         select count(*) from public."FactBilling";
+
+![image](https://github.com/user-attachments/assets/be0dbc04-2a66-40ac-acc5-ce99bbc0b360)
+
+- Problem 2: Using the PostgreSQL tool, create a simple Materialized views named avg_customer_bill with fields customerid and averagebillamount.
+
+  To create a simple Materialized views, I issued the following query statement
+
+         CREATE MATERIALIZED VIEW  avg_customer_bill (customerid, averagebillamount) AS
+         (select customerid, avg(billedamount)
+         from public."FactBilling"
+         group by customerid
+         );
+
+ ![image](https://github.com/user-attachments/assets/e41acbe3-fade-4011-806e-e13906eb0aae)
+
+ - Problem 3: Refresh and preview the newly created Materialized views
+
+   I righ-clicked on the Materialized view and then selected "Refresh". After refreshing, I right-clicked again to chose View > First 100 Rows
+
+![image](https://github.com/user-attachments/assets/1dd2d39e-e74b-4a14-a0ee-d4aed12c407b)
+
+- Problem 4: Using the newly created Materialized views find the customers whose average billing is more than 11000.
+
+  I solved this problem by issuing the following query statement:
+
+         select * from avg_customer_bill where averagebillamount > 11000;
+
+![image](https://github.com/user-attachments/assets/9903cb13-4c59-468a-849c-b210ca47c026)
 
 
 
