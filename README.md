@@ -156,7 +156,7 @@ FactBilling Table
 
  - Problem 3: Refresh and preview the newly created Materialized views
 
-   I righ-clicked on the Materialized view and then selected "Refresh". After refreshing, I right-clicked again to chose View > First 100 Rows
+   Right-click on the Materialized view and then select "Refresh". After refreshing, right-click again to chose View > First 100 Rows
 
 ![image](https://github.com/user-attachments/assets/1dd2d39e-e74b-4a14-a0ee-d4aed12c407b)
 
